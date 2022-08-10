@@ -1,0 +1,38 @@
+.AccountItem__wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 12px;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.AccountItem__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.AccountItem__info {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.AccountItem__name {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.AccountItem__check {
+    margin-left: 8px;
+    font-size: 1.2rem;
+    color: green;
+}
+
+.AccountItem__username {
+    font-size: 1.2rem;
+    color: rgba(22, 24, 35, 0.5);
+}
