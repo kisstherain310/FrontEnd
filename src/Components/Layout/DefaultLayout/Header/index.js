@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faMagnifyingGlass, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion, faCircleXmark, faEarthAsia, faEllipsisVertical, faKeyboard, faMagnifyingGlass, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss'
 import images from '../../../../assets/images';
 import Tippy from '@tippyjs/react/headless';
@@ -7,9 +7,60 @@ import { useEffect, useState } from 'react';
 import { Wrapper as PopperWrapper } from '../../../../Components/Popper';
 import AccountItem from '../../../AccountItem';
 import Button from '../../../Button';
+import Menu from '../../../Popper/Menu';
+
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'Tiếng Việt',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'vie',
+                    title: 'Tiếng Việt'
+                },
+                {
+                    type: 'language',
+                    code: 'eng',
+                    title: 'English'
+                },
+                {
+                    type: 'language',
+                    code: 'jan',
+                    title: 'Japanese'
+                },
+                {
+                    type: 'language',
+                    code: 'tha',
+                    title: 'Thailand'
+                },
+            ]
+        }
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Feedback and help',
+        to: '/feedback'
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Keyboard shortcuts'
+    }
+]
 
 function Header() {
     const [searchSerult, setSearchResult] = useState([]);
+
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+
+                break;
+            default:
+        }
+    }
 
     useEffect(() => {
         setTimeout(() => {
@@ -53,6 +104,15 @@ function Header() {
             <div className='header__actions'>
                     <Button text>Upload</Button>
                     <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>Log in</Button>
+
+                    <Menu
+                        items={MENU_ITEMS}
+                        onChange={handleMenuChange}
+                    >
+                        <button className='header__actions-more-btn'>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
             </div>
         </div>
     </div>;

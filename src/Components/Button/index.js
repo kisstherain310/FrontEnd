@@ -13,13 +13,17 @@ function Button({
     large = false, 
     leftIcon,
     rightIcon,
-    children, 
+    children,
+    className, 
     ...passProps 
 }) {
     let Component = 'button';
     let Primary = ''
     let Rounded = ''
     let Small = ''
+    let ClassName = ''
+    
+    if(className) ClassName = `${className}`
 
     if(rounded) Rounded = 'rounded'
 
@@ -43,7 +47,7 @@ function Button({
         Component = 'a'
     }
 
-    const classes = `button__wrapper ${Primary} ${Small} ${Rounded}`;
+    const classes = `button__wrapper ${Primary} ${Small} ${Rounded} ${ClassName}`;
     return ( 
         <Component className={classes} {...props}>
             {leftIcon && <span className='button__icon'>{leftIcon}</span>}
