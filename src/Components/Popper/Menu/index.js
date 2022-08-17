@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const defaultFn = () => {}
 
-function Menu({children, items = [], onChange = defaultFn}) {
+function Menu({children, items = [], hideOnClick = false, onChange = defaultFn} ) {
 
     const [history, setHistory] =  useState([{data: items}]);
     const current = history[history.length - 1]
@@ -28,7 +28,9 @@ function Menu({children, items = [], onChange = defaultFn}) {
     return ( 
         <Tippy
             interactive
-            delay={[0, 700]}
+            offset={[20, 10]}
+            hideOnClick={hideOnClick}
+            delay={[0, 500]}
             placement='bottom-end'
             render={attrs => (
                 <div className="header__actions-menu-items" tabIndex="-1" {...attrs}>
@@ -36,10 +38,13 @@ function Menu({children, items = [], onChange = defaultFn}) {
                         {history.length > 1 && <Header title="Language" onBack={() => {
                             setHistory(prev => prev.slice(0, prev.length - 1))
                         }}/>}
-                        {renderItems()}
+                        <div className='header__actions-menu-body'>
+                            {renderItems()}
+                        </div>
                     </PopperWrapper>
                 </div>
         )}
+        onHide={() => setHistory(prev => prev.slice(0, 1))}
         >
 
             {children}
